@@ -1,0 +1,17 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "format:cache": "prettier . --write --cache"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "prettier": "3.8.1"
+  }
+}

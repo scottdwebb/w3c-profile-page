@@ -1,0 +1,696 @@
+/* =========================================================
+   Tokens
+========================================================= */
+:root {
+  color-scheme: dark;
+
+  --bg: #0b1220;
+  --surface: #111b2e;
+  --text: #eaf0ff;
+  --muted: rgba(234, 240, 255, 0.78);
+
+  --accent: #67e8f9;
+  --accent-2: #c4b5fd;
+
+  /* Subtle borders */
+  --border: rgba(234, 240, 255, 0.1);
+
+  /* Spacing rhythm */
+  --card-gap: 0.7rem;
+  --radius: 1rem;
+
+  /* Unified interactive styling */
+  --control-bg: color-mix(in oklab, #111b2e 86%, #67e8f9 14%);
+  --control-border: color-mix(in oklab, #67e8f9 35%, rgba(234, 240, 255, 0.14));
+  --control-text: var(--text);
+
+  /* Shared hover edge for cards + buttons */
+  --edge-hover: color-mix(in oklab, #c4b5fd 62%, rgba(234, 240, 255, 0.14));
+
+  /* Toned-down shadows (less blur) */
+  --shadow-header: 0 1px 0 rgba(255, 255, 255, 0.035), 0 6px 12px rgba(0, 0, 0, 0.22);
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03), 0 7px 14px rgba(0, 0, 0, 0.22);
+
+  --shadow-card-hover: 0 1px 0 rgba(255, 255, 255, 0.045), 0 10px 18px rgba(0, 0, 0, 0.28);
+
+  --shadow-btn: 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 10px rgba(0, 0, 0, 0.18);
+
+  --ring: 3px solid color-mix(in oklab, #67e8f9 75%, white 25%);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f7f9ff;
+  --surface: #ffffff;
+  --text: #0b1220;
+  --muted: #334155;
+
+  --accent: #0369a1;
+  --accent-2: #6d28d9;
+
+  --border: rgba(11, 18, 32, 0.1);
+
+  --control-bg: color-mix(in oklab, #ffffff 88%, #0369a1 12%);
+  --control-border: color-mix(in oklab, #0369a1 45%, rgba(11, 18, 32, 0.14));
+  --control-text: var(--text);
+
+  --edge-hover: color-mix(in oklab, #6d28d9 62%, rgba(11, 18, 32, 0.14));
+
+  --shadow-header: 0 1px 0 rgba(0, 0, 0, 0.03), 0 6px 12px rgba(0, 0, 0, 0.1);
+
+  --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.035), 0 7px 14px rgba(0, 0, 0, 0.1);
+
+  --shadow-card-hover: 0 1px 0 rgba(0, 0, 0, 0.045), 0 10px 18px rgba(0, 0, 0, 0.14);
+
+  --shadow-btn: 0 1px 0 rgba(0, 0, 0, 0.04), 0 4px 10px rgba(0, 0, 0, 0.09);
+
+  --ring: 3px solid color-mix(in oklab, #0369a1 70%, white 30%);
+}
+
+/* =========================================================
+   Base / reset (fluid, mobile-first, modern defaults)
+========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  /* Fluid root: ~16px at 412px → ~18px at 1024px */
+  font-size: clamp(16px, calc(16px + (18 - 16) * ((100vw - 412px) / (1024 - 412))), 18px);
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Roboto",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.6; /* unitless = scales with font size */
+  color: var(--text);
+  background:
+    radial-gradient(
+      900px 400px at 20% 0%,
+      color-mix(in oklab, var(--accent) 12%, transparent),
+      transparent 64%
+    ),
+    radial-gradient(
+      700px 350px at 80% 10%,
+      color-mix(in oklab, var(--accent-2) 10%, transparent),
+      transparent 68%
+    ),
+    var(--bg);
+}
+
+/* =========================================================
+   Utilities
+========================================================= */
+.wrap {
+  width: min(1000px, 92vw);
+  margin: 0 auto;
+  padding: 1.25rem 0;
+}
+
+.surface {
+  background: color-mix(in oklab, var(--surface) 92%, black 8%);
+  border-bottom: 1px solid var(--border);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+
+  /* Validator-friendly */
+  clip: rect(0, 0, 0, 0);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  z-index: 999;
+}
+.skip-link:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+  outline: var(--ring);
+}
+
+/* =========================================================
+   Typography (hierarchy stays above body)
+========================================================= */
+/* Headings / titles */
+.site-title,
+.section-header h2,
+.subsection-title,
+.inner-subsection h4 {
+  font-family:
+    "Roboto Condensed",
+    "Roboto",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+.site-title {
+  margin: 0;
+  letter-spacing: 0.1rem;
+  font-size: clamp(2.1em, 4.2vw, 3.2em);
+  line-height: 1.15;
+}
+
+.site-subtitle {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: clamp(1.55em, 2.8vw, 2.15em);
+  line-height: 1.25;
+}
+
+.subsection-title {
+  font-size: clamp(1.3em, 1.9vw, 1.6em);
+  line-height: 1.25;
+}
+
+/* Inner subsection heading should never look smaller than body */
+.main-section .card .inner-subsection h4 {
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+  font-size: 1.12em;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+/* Reflow safety: long words/URLs won't force horizontal scroll */
+:where(h1, h2, h3, h4, p, li, a, button, .tag) {
+  overflow-wrap: anywhere;
+}
+
+.section-kicker {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+/* =========================================================
+   Header + navigation
+========================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-header);
+}
+
+.header-grid {
+  display: grid;
+  gap: 0.45rem; /* reduced title/subtitle gap on mobile */
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title actions"
+    "subtitle subtitle";
+  align-items: start;
+}
+
+.site-title {
+  grid-area: title;
+}
+.header-actions {
+  grid-area: actions;
+}
+.site-subtitle {
+  grid-area: subtitle;
+}
+
+.header-actions {
+  display: flex;
+  align-items: flex-start; /* aligns to title row on mobile */
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.site-nav__links--desktop {
+  display: none; /* mobile default */
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+:root {
+  --header-offset: 6.5rem;
+}
+
+html {
+  scroll-padding-top: var(--header-offset);
+}
+
+.main-section {
+  scroll-margin-top: var(--header-offset);
+}
+
+/* =========================================================
+   Buttons + nav links (WCAG-friendly sizing)
+========================================================= */
+.btn,
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* WCAG 2.5.8 Target Size (Minimum): >= 24x24 CSS px */
+  min-inline-size: 24px;
+  min-block-size: 24px;
+  padding: 0.5em 0.9em; /* scales with text; grows under user spacing */
+
+  border-radius: 0.9rem;
+  background: var(--control-bg);
+  color: var(--control-text);
+  border: 1px solid var(--control-border);
+  box-shadow: var(--shadow-btn);
+
+  line-height: 1.2;
+  white-space: normal; /* allow wrapping at 200% zoom / spacing overrides */
+
+  transition:
+    transform 0.12s ease,
+    border-color 0.12s ease,
+    background-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.btn:hover,
+.nav-link:hover {
+  transform: translateY(-1px);
+  border-color: var(--edge-hover);
+  background: color-mix(in oklab, var(--control-bg) 84%, var(--accent-2) 16%);
+}
+
+/* Click styles (rubric requirement) */
+.btn:active,
+.nav-link:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline: var(--ring);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   Hamburger (mobile)
+========================================================= */
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* keep it comfortably tappable; grows with font-size */
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  padding: 0.65rem;
+
+  border-radius: 0.95rem;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+}
+
+.nav-toggle {
+  display: inline-flex;
+}
+
+.nav-toggle:focus-visible {
+  outline: var(--ring);
+  outline-offset: 2px;
+}
+
+.nav-toggle__icon {
+  display: inline-block;
+  width: 1.7rem;
+  height: 3px;
+  background: currentColor;
+  position: relative;
+  border-radius: 999px;
+}
+
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1.7rem;
+  height: 3px;
+  background: currentColor;
+  border-radius: 999px;
+}
+
+.nav-toggle__icon::before {
+  top: -7px;
+}
+
+.nav-toggle__icon::after {
+  top: 7px;
+}
+
+/* =========================================================
+   Theme toggle (filled sun/moon)
+========================================================= */
+.theme-toggle--desktop {
+  display: none;
+} /* mobile default hidden */
+.theme-toggle--mobile {
+  display: inline-flex;
+}
+
+.theme-toggle__icon {
+  color: var(--accent);
+}
+
+.theme-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon .icon-sun {
+  display: none;
+}
+:root[data-theme="dark"] .theme-icon .icon-moon {
+  display: block;
+}
+
+:root[data-theme="light"] .theme-icon .icon-sun {
+  display: block;
+}
+:root[data-theme="light"] .theme-icon .icon-moon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle__icon {
+  color: var(--accent-2);
+}
+
+/* =========================================================
+   Offcanvas
+========================================================= */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 50;
+}
+
+.offcanvas-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(340px, 88vw);
+  padding: 1rem;
+
+  background: color-mix(in oklab, var(--surface) 92%, black 8%);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+
+  transform: translateX(102%);
+  transition: transform 0.2s ease;
+  z-index: 60;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.offcanvas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.offcanvas-title {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.06rem;
+}
+
+.offcanvas-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Backdrop open */
+body.nav-open .nav-backdrop {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.2s ease,
+    visibility 0s;
+}
+body.nav-open .offcanvas-nav {
+  transform: translateX(0);
+}
+
+/* =========================================================
+   Main layout + cards
+========================================================= */
+.main-section {
+  padding: 1.35rem 0 1.6rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 1rem;
+  transition:
+    transform 0.14s ease,
+    box-shadow 0.14s ease,
+    border-color 0.14s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--edge-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Contextual selectors (rubric requirement) */
+.main-section .card .subsection-title {
+  margin: 0 0 var(--card-gap);
+  letter-spacing: 0.02rem;
+}
+
+.main-section .card .inner-subsection h4 {
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+}
+
+/* Border inner sections (subtle) */
+.inner-subsection {
+  padding: 0.75rem;
+  border-radius: 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--border) 85%, var(--accent) 15%);
+  background: color-mix(in oklab, var(--surface) 96%, transparent);
+  margin-top: var(--card-gap);
+}
+
+.list {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+}
+
+/* Match card button margin to inner-subsection spacing */
+.card .btn {
+  margin-top: var(--card-gap);
+}
+
+/* =========================================================
+   Tags + footer + misc
+========================================================= */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  border: 1px solid color-mix(in oklab, var(--border) 88%, var(--accent-2) 12%);
+  background: color-mix(in oklab, var(--surface) 94%, transparent);
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.75rem;
+}
+
+.site-footer {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+}
+
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Back-to-top: fixed in bottom-right, only visible after scrolling */
+.back-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 30;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0s linear 0.15s;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0s;
+}
+
+.back-to-top.is-lifted {
+  /* fallback first */
+  bottom: 5rem;
+
+  /* safe-area aware (mainly for edge cases like iPhones) */
+  /*   right: 1rem;
+  right: max(1rem, env(safe-area-inset-right, 0px));
+
+  bottom: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px)); */
+}
+
+.validator-badge img {
+  display: block;
+  border: 0;
+}
+
+/* =========================================================
+   Desktop overrides (the critical part)
+========================================================= */
+@media (min-width: 768px) {
+  .header-grid {
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .header-actions {
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .site-nav__links--desktop {
+    display: flex;
+  }
+
+  /* Hide hamburger on desktop (strong selector so it wins) */
+  .nav-toggle.icon-btn {
+    display: none;
+  }
+
+  /* Show desktop theme toggle on desktop */
+  .theme-toggle--desktop {
+    display: inline-flex;
+  }
+  .theme-toggle--mobile {
+    display: none;
+  }
+
+  /* Offcanvas UI hidden on desktop */
+  .offcanvas-nav {
+    display: none;
+  }
+  .nav-backdrop {
+    display: none;
+  }
+}
+
+/* =========================================================
+   Motion preferences
+========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .card,
+  .btn,
+  .nav-link,
+  .offcanvas-nav,
+  .nav-backdrop {
+    transition: none;
+  }
+}

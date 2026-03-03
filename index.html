@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Scott D. Webb — Front-end developer profile page." />
+    <title>Scott D. Webb</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+
+    <header id="pageHeader" class="site-header surface">
+      <div class="wrap header-grid">
+        <h1 class="site-title">Scott D. Webb</h1>
+
+        <div class="header-actions" aria-label="Header actions">
+          <nav class="site-nav" aria-label="Primary">
+            <div class="site-nav__links site-nav__links--desktop">
+              <a class="nav-link" href="#education">Education</a>
+              <a class="nav-link" href="#work">Work</a>
+              <a class="nav-link" href="#favorites">Favorites</a>
+            </div>
+
+            <button
+              id="navToggle"
+              class="icon-btn nav-toggle"
+              type="button"
+              aria-controls="offcanvasNav"
+              aria-expanded="false"
+            >
+              <span class="nav-toggle__icon" aria-hidden="true"></span>
+              <span class="sr-only">Open menu</span>
+            </button>
+          </nav>
+
+          <button
+            class="btn theme-toggle theme-toggle--desktop"
+            type="button"
+            data-theme-toggle
+            aria-pressed="false"
+          >
+            <span class="theme-toggle__icon" aria-hidden="true">
+              <svg class="theme-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <g class="icon-sun" fill="currentColor">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <path d="M11 1h2v3h-2zM11 20h2v3h-2zM20 11h3v2h-3zM1 11h3v2H1z"></path>
+                  <path
+                    d="M17.66 4.93l1.41 1.41-2.12 2.12-1.41-1.41zM6.34 16.24l1.41 1.41-2.12 2.12-1.41-1.41z"
+                  ></path>
+                  <path
+                    d="M19.07 17.66l-1.41 1.41-2.12-2.12 1.41-1.41zM7.76 6.34L6.34 7.76 4.22 5.64l1.41-1.41z"
+                  ></path>
+                </g>
+                <path
+                  class="icon-moon"
+                  fill="currentColor"
+                  d="M21 14.2A8.2 8.2 0 0 1 9.8 3.0a7.4 7.4 0 1 0 11.2 11.2Z"
+                ></path>
+              </svg>
+            </span>
+            <span class="btn__text">Theme</span>
+            <span class="sr-only theme-toggle__sr">Switch theme</span>
+          </button>
+        </div>
+
+        <p class="site-subtitle">Front-End Developer | Accessibility and Mobile-first</p>
+      </div>
+    </header>
+
+    <button class="nav-backdrop" type="button" aria-label="Close menu"></button>
+
+    <nav id="offcanvasNav" class="offcanvas-nav" aria-label="Primary">
+      <div class="offcanvas-head">
+        <p class="offcanvas-title">Menu</p>
+
+        <button
+          class="btn theme-toggle theme-toggle--mobile"
+          type="button"
+          data-theme-toggle
+          aria-pressed="false"
+        >
+          <span class="theme-toggle__icon" aria-hidden="true">
+            <svg class="theme-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+              <g class="icon-sun" fill="currentColor">
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M11 1h2v3h-2zM11 20h2v3h-2zM20 11h3v2h-3zM1 11h3v2H1z"></path>
+                <path
+                  d="M17.66 4.93l1.41 1.41-2.12 2.12-1.41-1.41zM6.34 16.24l1.41 1.41-2.12 2.12-1.41-1.41z"
+                ></path>
+                <path
+                  d="M19.07 17.66l-1.41 1.41-2.12-2.12 1.41-1.41zM7.76 6.34L6.34 7.76 4.22 5.64l1.41-1.41z"
+                ></path>
+              </g>
+              <path
+                class="icon-moon"
+                fill="currentColor"
+                d="M21 14.2A8.2 8.2 0 0 1 9.8 3.0a7.4 7.4 0 1 0 11.2 11.2Z"
+              ></path>
+            </svg>
+          </span>
+          <span class="btn__text">Theme</span>
+          <span class="sr-only theme-toggle__sr">Switch theme</span>
+        </button>
+      </div>
+
+      <div class="offcanvas-links">
+        <a class="nav-link" href="#education">Education</a>
+        <a class="nav-link" href="#work">Work</a>
+        <a class="nav-link" href="#favorites">Favorites</a>
+      </div>
+    </nav>
+
+    <main id="mainContent" class="wrap">
+      <section id="education" class="main-section">
+        <header class="section-header">
+          <h2>Education</h2>
+          <p class="section-kicker">Learning the fundamentals and sharpened my craft.</p>
+        </header>
+
+        <div class="grid">
+          <article class="card surface">
+            <h3 class="subsection-title">Self-Taught Track — HTML/CSS</h3>
+
+            <div class="inner-subsection">
+              <h4>Details</h4>
+              <p>
+                Self-taught dev track: I learned by shipping HTML/CSS changes, reading specs/docs,
+                and debugging fast. Design skills pushed UI quality and asset readiness.
+              </p>
+            </div>
+
+            <div class="inner-subsection">
+              <h4>Highlights</h4>
+              <ul class="list">
+                <li>Semantic HTML + modern CSS</li>
+                <li>Power-user troubleshooting + workflow</li>
+                <li>Raster art/photo edits; export for web</li>
+                <li>Design-driven UI polish</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card surface">
+            <h3 class="subsection-title">Certifications</h3>
+
+            <div class="inner-subsection">
+              <h4>Details</h4>
+              <ul class="list">
+                <li>Developing Front End Apps with React</li>
+                <li>Web Development with HTML5, CSS3, and JavaScript</li>
+              </ul>
+            </div>
+
+            <div class="inner-subsection">
+              <h4>Highlights</h4>
+              <ul class="list">
+                <li>
+                  Master React components, hooks, props, virtual DOM, forms, and Redux for efficient
+                  client-side apps. Build and showcase projects on GitHub.
+                </li>
+                <li>
+                  Learn HTML structure, CSS styling/frameworks, JS interactivity, DOM/events for
+                  responsive sites. Ideal for beginners building portfolios.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <button class="btn card" type="button">
+                View Certifications
+                <a
+                  href="https://www.credly.com/users/scott-webb.6948728e"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Credly Certifications"
+                  title="Credly"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path
+                      fill="currentColor"
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                </a>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="work" class="main-section">
+        <header class="section-header">
+          <h2>Work experience</h2>
+          <p class="section-kicker">Projects and roles I&rsquo;ve taken on.</p>
+        </header>
+
+        <div class="grid">
+          <article class="card surface" aria-labelledby="roleOne">
+            <h3 id="roleOne" class="subsection-title">Frontend Developer — Freelance</h3>
+
+            <div class="inner-subsection">
+              <h4>Details</h4>
+              <ul class="list">
+                <li>Focus: Responsive UI</li>
+                <li>Tools: HTML/CSS/JS</li>
+              </ul>
+            </div>
+
+            <div class="inner-subsection">
+              <h4>Highlights</h4>
+              <ul class="list">
+                <li>Reusable components</li>
+                <li>Accessible navigation</li>
+              </ul>
+            </div>
+
+            <a class="btn" href="#favorites">See favorites</a>
+          </article>
+
+          <article class="card surface" aria-labelledby="roleTwo">
+            <h3 id="roleTwo" class="subsection-title">Portfolio Project</h3>
+
+            <div class="inner-subsection">
+              <h4>Details</h4>
+              <ul class="list">
+                <li>Goal: Showcase work</li>
+                <li>Method: Mobile-first</li>
+              </ul>
+            </div>
+
+            <div class="inner-subsection">
+              <h4>Highlights</h4>
+              <ul class="list">
+                <li>SCSS organization</li>
+                <li>Clean, semantic markup</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="favorites" class="main-section">
+        <header class="section-header">
+          <h2>Favorite things</h2>
+          <p class="section-kicker">A few things I enjoy outside of work.</p>
+        </header>
+
+        <div class="grid">
+          <article class="card surface">
+            <h3 class="subsection-title">Tech</h3>
+
+            <div class="inner-subsection">
+              <h4>Details</h4>
+              <p class="muted">Tools and topics I like using.</p>
+              <ul class="list">
+                <li>Bootstrap framework with SCSS for responsive, accessible layouts</li>
+                <li>Vanilla JS for lightweight DOM manipulation and interactivity</li>
+                <li>WCAG-compliant semantic HTML with React components</li>
+              </ul>
+            </div>
+
+            <div class="inner-subsection">
+              <h4>Favorites</h4>
+              <div class="tags" role="list">
+                <span class="tag" role="listitem"
+                  ><a href="https://getbootstrap.com" target="_blank" rel="noopener"
+                    >Bootstrap</a
+                  ></span
+                >
+                <span class="tag" role="listitem"
+                  ><a href="https://sass-lang.com" target="_blank" rel="noopener">SCSS</a></span
+                >
+                <span class="tag" role="listitem"
+                  ><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction"
+                    target="_blank"
+                    rel="noopener"
+                    >Vanilla JS</a
+                  ></span
+                >
+                <span class="tag" role="listitem"
+                  ><a
+                    href="https://www.w3.org/WAI/standards-guidelines/wcag/"
+                    target="_blank"
+                    rel="noopener"
+                    >WCAG</a
+                  ></span
+                >
+              </div>
+            </div>
+
+            <a class="btn" href="#education">Back to education</a>
+          </article>
+
+          <article class="card surface">
+            <h3 class="subsection-title">Hobbies</h3>
+
+            <div class="inner-subsection">
+              <h4>Details</h4>
+              <p class="muted">What I do to recharge.</p>
+              <ul class="list">
+                <li>Digital illustration for sports apparel branding concepts</li>
+                <li>Building small web experiments</li>
+                <li>Designing conceptual project specific graphics</li>
+              </ul>
+            </div>
+
+            <div class="inner-subsection">
+              <h4>Favorites</h4>
+              <ul class="list">
+                <li>Digital illustration</li>
+                <li>Building small web experiments</li>
+              </ul>
+            </div>
+
+            <button class="btn" type="button">
+              Let's Collaborate
+              <a
+                href="https://github.com/scottdwebb"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+                title="GitHub"
+              >
+                <svg class="icon" viewBox="0 0 24 24" width="20" height="20">
+                  <path
+                    fill="currentColor"
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.22.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://codepen.io/scottdwebb"
+                target="_blank"
+                rel="noopener"
+                aria-label="CodePen"
+                title="CodePen"
+              >
+                <svg class="icon" viewBox="0 0 24 24" width="20" height="20">
+                  <path
+                    fill="currentColor"
+                    d="M22.775 2.354c-.71-.71-1.862-.71-2.572 0L1.225 19.423c-.71.71-.71 1.862 0 2.572.35.35.81.524 1.286.524.475 0 .936-.174 1.286-.524L22.775 4.926c.71-.71.71-1.862 0-2.572zM9.686 17.914L2.086 10.314l4.686-4.686 7.6 7.6-4.686 4.686h-.004zM17.914 9.686L10.314 2.086l4.686-4.686 7.6 7.6-4.686 4.686z"
+                  />
+                </svg>
+              </a>
+            </button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer id="pageFooter" class="site-footer surface">
+      <div class="wrap footer-row">
+        <p class="copy">© 2026 Scott D. Webb. All rights reserved.</p>
+
+        <div class="footer-actions">
+          <a class="validator-badge" href="https://jigsaw.w3.org/css-validator/check/referer">
+            <img src="./img/vcss-blue.png" width="88" height="31" alt="Valid CSS!" />
+          </a>
+
+          <button id="backToTop" class="btn back-to-top" type="button">Back to top</button>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

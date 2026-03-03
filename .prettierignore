@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# builds / output
+dist/
+build/
+coverage/
+.cache/
+.tmp/
+out/
+*.log
+
+# tooling / meta
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# misc
+*.min.js
+*.min.css
