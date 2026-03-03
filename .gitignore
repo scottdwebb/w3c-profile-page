@@ -1,0 +1,49 @@
+########################################
+# Node (local Prettier install)
+########################################
+node_modules/                          # Dependency directory 
+
+# Logs (from official Node.gitignore template)
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*                       # Common Node logs 
+
+# Coverage / tooling caches
+coverage
+.nyc_output                            # nyc coverage output 
+.eslintcache                           # Optional eslint cache 
+.stylelintcache                        # Optional stylelint cache 
+
+# Prettier cache (when using --cache) lives under node_modules by default 
+# (node_modules/ already ignores it)
+
+########################################
+# Secrets / environment
+########################################
+.env
+.env.*
+!.env.example                          # dotenv patterns from Node.gitignore 
+
+########################################
+# Editor / workspace (personal)
+########################################
+.vscode/
+.idea/
+*.code-workspace
+
+########################################
+# OS junk
+########################################
+.DS_Store
+Thumbs.db
+
+########################################
+# Keys / certificates (safety)
+########################################
+*.pem
+*.key
+*.p12
+*.keystore
